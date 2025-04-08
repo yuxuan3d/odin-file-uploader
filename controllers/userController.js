@@ -1,13 +1,12 @@
 const db = require("../db/queries");
 const {genPassword} = require("../db/passwordUtils");
 const { body, validationResult } = require('express-validator');
-const pool = require("../db/pool");
 
 
-async function getAllUsers(req, res) {
-  const users = db.getAllUsers() 
+async function triggerHome(req, res) {
   res.render("index", {
-    title: "Usernames"
+    title: "Home",
+    user: req.user
   })
 }
 
@@ -16,7 +15,7 @@ async function checkUserExist(username) {
     return user
 }
 
-async function newUser(req, res) {
+async function newUser(req, res, next) {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -88,7 +87,7 @@ async function newUser(req, res) {
 // }
 
 module.exports = {
-  getAllUsers,
+  triggerHome,
   checkUserExist,
   newUser
   };

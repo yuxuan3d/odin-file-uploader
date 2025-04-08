@@ -6,7 +6,6 @@ const prisma = new PrismaClient()
 
 async function getAllUsers() {
     const allUsers = await prisma.user.findMany()
-    console.log(allUsers)
     return allUsers
 }
 
@@ -33,6 +32,18 @@ async function createUser(username, password, salt) {
         console.error('Error creating user:', err);
         throw err; // Re-throw the error to be handled by the caller
     }
+}
+
+async function findUserById(id) {
+    try {
+        const user = await prisma.user.findUnique({
+            where: {
+                id: id
+            }
+        })
+        return user
+    } catch (err) {
+          throw err;}
 }
 
 // async function createUser(fName, lName, username, password, membership, salt,isAdmin) {
@@ -122,5 +133,6 @@ async function createUser(username, password, salt) {
 module.exports = {
     getAllUsers,
     findUserByUsername,
-    createUser
+    createUser,
+    findUserById
 };

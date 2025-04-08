@@ -1,9 +1,10 @@
+const passport = require('passport');
 const {Router} = require('express')
 const app = Router()
 const usersController = require("../controllers/userController");
 const { body } = require("express-validator");
 
-app.get("/", usersController.getAllUsers);
+app.get("/", usersController.triggerHome);
 
 app.get("/signup", (req, res) => {
     res.render("signup", {errors: []});
@@ -24,5 +25,22 @@ app.post("/signup",
             throw new Error('Passwords must match.'); // Throw error within custom validator
         } return true;}),
     (req, res, next) => usersController.newUser(req,res))
+
+app.post(
+    "/login",
+    passport.authenticate("local", {
+      successRedirect: "/",
+      failureRedirect: "/login-failed"
+    })
+);
+
+app.get("/logout", (req, res, next) => {
+    req.logout((err) => {
+        if (err) {
+        return next(err);
+        }
+        res.redirect("/");
+    });
+})
 
 module.exports = app;
