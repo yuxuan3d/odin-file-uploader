@@ -11,11 +11,40 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DB_STRING")
 }
 
 model User {
   id      Int      @id @default(autoincrement())
-  email   String   @unique
-  username String?
+  username    String? @unique
+  password    String?
+  salt        String?
+  files       File[]
+}
+
+model File {
+  id            Int      @id @default(autoincrement())
+  originalName  String
+  storagePath   String
+  isFolder  Boolean  @default(false)
+  size          BigInt
+  mimeType      String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade) // Cascade delete: if user is deleted, their files are too.
+
+  parentId  Int  // Foreign key to the parent folder (null for root items)
+  parent    File?    @relation("FolderHierarchy", fields: [parentId], references: [id], onDelete: Cascade) // Relation to the parent folder. Cascade delete: deleting
+  children  File[]   @relation("FolderHierarchy") // Relation to the children of this folder
+
+  @@unique([userId, parentId, originalName])
+}
+
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String   
+  expiresAt   DateTime
 }

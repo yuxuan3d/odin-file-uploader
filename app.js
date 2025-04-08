@@ -4,7 +4,8 @@ const session = require('express-session');
 const app = express()
 const path = require("node:path");
 const index = require("./routes/index")
-const pg = require('pg');
+const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
+const { PrismaClient } = require('./generated/prisma')
 
 require('./db/passport');
 
@@ -12,10 +13,6 @@ require('dotenv').config();
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-
-const pgPool = new pg.Pool({
-  connectionString: process.env.DB_STRING
-});
 
 app.use(session({
     store: new PrismaSessionStore(
