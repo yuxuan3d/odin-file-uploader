@@ -1,0 +1,28 @@
+<html>
+  <body>
+    <h1>Sign up</h1>
+    <form method="POST" action="/signup">
+        <formgroup>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+        </formgroup>
+        <formgroup>  
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+        </formgroup>
+        <formgroup>  
+            <label for="passwordConfirmation">Confirm Password:</label>
+            <input type="password" id="passwordConfirmation" name="passwordConfirmation">
+        </formgroup>
+        <button type="submit">Submit</button>
+        <% if (errors.length > 0) { %>
+            <ul>
+                <% errors.forEach(error => { %>
+                    <li><%= error.msg %></li>
+                <% }) %>
+            </ul>
+        <% } %>
+    </form>
+    <a href="/">Home</a>
+  </body>
+</html>

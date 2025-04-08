@@ -1,0 +1,22 @@
+<html>
+  <body>
+    <h1><%- title %></h1>
+    <% if (locals.user) {%>
+      <h1>Welcome <%= user.username %></h1>
+      <a href="/new">Create a new message</a>
+      <a href="/logout">LOG OUT</a>
+    <% } else { %>
+
+    <h2>Login</h2>
+    <form action="/login" method="POST">
+      <label for="username">Username: </label>
+      <input type="text" name="username" id="username">
+      <label for="password">Password: </label>
+      <input type="password" name="password" id="password">
+      <button type="submit">Submit</button>
+    </form>
+    <a href="/signup">Signup</a>
+    <%}%>
+   
+  </body>
+</html>
