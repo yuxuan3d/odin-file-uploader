@@ -22,14 +22,16 @@ model User {
 }
 
 model File {
-  id           Int      @id @default(autoincrement())
-  originalName String
-  storagePath  String?
-  isFolder     Boolean  @default(false)
-  size         BigInt?
-  mimeType     String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id                 Int      @id @default(autoincrement())
+  originalName       String
+  url                String?
+  cloudinaryPublicId String?
+  resourceType       String?
+  isFolder           Boolean  @default(false)
+  size               BigInt?
+  mimeType           String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
 
   userId Int
   user   User @relation(fields: [userId], references: [id], onDelete: Cascade) // Cascade delete: if user is deleted, their files are too.

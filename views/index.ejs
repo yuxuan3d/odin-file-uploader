@@ -63,16 +63,19 @@
                         <% if (item.isFolder) { %>
                             📁 <a href="/folder/<%= item.id %>"><%= item.originalName %></a>
                         <% } else { %>
-                            📄 <%= item.originalName %>
-                            <small>(<%= (Number(item.size) / 1024).toFixed(2) %> KB)</small>
+                            <% if (item.size != null) { %>
+                                <a href="<%= item.url %>" target="_blank"><%= item.originalName %></a>
+                                <small>(<%= (Number(item.size) / 1024).toFixed(2) %> KB)</small>
+                            <% } else { %>
+                                <small>(N/A)</small>
+                            <% } %>
+
+                            <% if (item.url) { %>
+                                <a href="<%= item.url %>" download="<%= item.originalName %>" style="margin-left: 15px; font-weight: bold;" title="Download File">Download</a>
+                            <% } %>
                         <% } %>
                     </span>
-                    <span class="item-actions">
-                        <!-- Download: Link to download or use JS modal -->
-                        <form action="/download/<%= item.id %>" method="POST"></form>
-                            <button type="submit">Download</button>
-                        </form>
-                        
+                    <span class="item-actions">                      
                         <!-- Rename: Link to form or use JS modal -->
                         <a href="/rename/<%= item.id %>">Rename</a>
 

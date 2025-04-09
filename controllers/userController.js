@@ -1,6 +1,8 @@
 const db = require("../db/queries");
 const {genPassword} = require("../db/passwordUtils");
 const { body, validationResult } = require('express-validator');
+const cloudinary = require('cloudinary').v2;
+const streamifier = require('streamifier');
 
 
 async function triggerHomeOrFolderView(req, res) {
@@ -20,7 +22,7 @@ async function triggerHomeOrFolderView(req, res) {
         currentFolderId: null
     });
   }
-  
+
   try {
     const userId = req.user.id;
     const folderId = req.params.folderId || null;
@@ -86,16 +88,57 @@ async function handleFileUpload(req, res, next) {
     return res.redirect(parentFolderId ? `/folder/${parentFolderId}` : '/');
   }
 
+  let streamUpload = (fileBuffer) => {
+    return new Promise((resolve, reject) => {
+        let stream = cloudinary.uploader.upload_stream(
+            {
+                // Automatically detect resource type (image, video, raw)
+                 resource_type: "auto"
+            },
+            (error, result) => {
+                if (result) {
+                    resolve(result);
+                } else {
+                    reject(error);
+                }
+            }
+        );
+        // Pipe the buffer to the stream uploader
+        streamifier.createReadStream(fileBuffer).pipe(stream);
+    });
+  };
+
   try {
-    const { originalname, path: storagePath, size, mimetype } = req.file
-    const userId = req.user.id
-    const parentId = req.body.parentId || null
+    console.log("Attempting to upload to Cloudinary...");
+        // Upload the file buffer from Multer memoryStorage
+        const cloudinaryResult = await streamUpload(req.file.buffer);
+        console.log("Cloudinary upload successful:", cloudinaryResult.public_id);
 
-    await db.createFileRecord(originalname, storagePath, size, mimetype, userId, parentId)
+        const { originalname, size, mimetype } = req.file;
+        const userId = req.user.id;
+        const parentId = req.body.parentId || null;
 
-    console.log(`File ${originalname} uploaded to parent ${parentId || 'root'}`);
-        // Redirect back to the folder where the file was uploaded
-    res.redirect(parentId ? `/folder/${parentId}` : '/');
+        // Extract relevant data from Cloudinary response
+        const url = cloudinaryResult.secure_url;
+        const publicId = cloudinaryResult.public_id;
+        const resourceType = cloudinaryResult.resource_type; // 'image', 'video', 'raw' etc.
+        const actualSize = cloudinaryResult.bytes; // Use size reported by Cloudinary
+
+        // Use the updated query function with Cloudinary data
+        await db.createFileRecord(
+            originalname,
+            url,          // Pass Cloudinary URL
+            publicId,     // Pass Cloudinary Public ID
+            resourceType, // Pass resource type
+            actualSize,   // Pass size from Cloudinary
+            mimetype,     // Keep original mimetype
+            userId,
+            parentId
+        );
+
+        console.log(`File ${originalname} uploaded via Cloudinary to parent ${parentId || 'root'}`);
+        // Add flash message ideally
+        res.redirect(parentId ? `/folder/${parentId}` : '/');
   } catch (error) {
     console.error("Error handling file upload:", error);
     next(error);

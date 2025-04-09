@@ -24,7 +24,9 @@ model User {
 model File {
   id            Int      @id @default(autoincrement())
   originalName  String
-  storagePath   String?
+  url           String?
+  cloudinaryPublicId String?
+  resourceType  String?
   isFolder  Boolean  @default(false)
   size          BigInt?
   mimeType      String?

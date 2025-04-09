@@ -4,19 +4,9 @@ const app = Router()
 const usersController = require("../controllers/userController");
 const { body } = require("express-validator");
 const multer  = require('multer')
-const path = require('path');
 
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, './uploads/'); // Ensure this directory exists
-    },
-    filename: function (req, file, cb) {
-      // Generate a unique filename to avoid collisions
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-      cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
-    }
-  });
+const storage = multer.memoryStorage();
 
 const upload = multer({ storage: storage });
 
@@ -27,7 +17,6 @@ function ensureAuthenticated(req, res, next) {
     console.log("User not authenticated, redirecting to /");
     return next();
 }
-
 
 
 app.get("/signup", (req, res) => {
@@ -84,7 +73,5 @@ app.get("/rename/:itemId", ensureAuthenticated, usersController.triggerRenameFor
 app.post("/rename/:itemId", ensureAuthenticated, usersController.handleRenameItem);
 
 app.post("/delete/:itemId", ensureAuthenticated, usersController.handleDeleteItem);
-
-// app.post("/download/:itemId", ensureAuthenticated, usersController.handleDownloadItem);
 
 module.exports = app;

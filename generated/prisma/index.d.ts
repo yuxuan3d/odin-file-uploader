@@ -2219,7 +2219,9 @@ export namespace Prisma {
   export type FileMinAggregateOutputType = {
     id: number | null
     originalName: string | null
-    storagePath: string | null
+    url: string | null
+    cloudinaryPublicId: string | null
+    resourceType: string | null
     isFolder: boolean | null
     size: bigint | null
     mimeType: string | null
@@ -2232,7 +2234,9 @@ export namespace Prisma {
   export type FileMaxAggregateOutputType = {
     id: number | null
     originalName: string | null
-    storagePath: string | null
+    url: string | null
+    cloudinaryPublicId: string | null
+    resourceType: string | null
     isFolder: boolean | null
     size: bigint | null
     mimeType: string | null
@@ -2245,7 +2249,9 @@ export namespace Prisma {
   export type FileCountAggregateOutputType = {
     id: number
     originalName: number
-    storagePath: number
+    url: number
+    cloudinaryPublicId: number
+    resourceType: number
     isFolder: number
     size: number
     mimeType: number
@@ -2274,7 +2280,9 @@ export namespace Prisma {
   export type FileMinAggregateInputType = {
     id?: true
     originalName?: true
-    storagePath?: true
+    url?: true
+    cloudinaryPublicId?: true
+    resourceType?: true
     isFolder?: true
     size?: true
     mimeType?: true
@@ -2287,7 +2295,9 @@ export namespace Prisma {
   export type FileMaxAggregateInputType = {
     id?: true
     originalName?: true
-    storagePath?: true
+    url?: true
+    cloudinaryPublicId?: true
+    resourceType?: true
     isFolder?: true
     size?: true
     mimeType?: true
@@ -2300,7 +2310,9 @@ export namespace Prisma {
   export type FileCountAggregateInputType = {
     id?: true
     originalName?: true
-    storagePath?: true
+    url?: true
+    cloudinaryPublicId?: true
+    resourceType?: true
     isFolder?: true
     size?: true
     mimeType?: true
@@ -2400,7 +2412,9 @@ export namespace Prisma {
   export type FileGroupByOutputType = {
     id: number
     originalName: string
-    storagePath: string | null
+    url: string | null
+    cloudinaryPublicId: string | null
+    resourceType: string | null
     isFolder: boolean
     size: bigint | null
     mimeType: string | null
@@ -2432,7 +2446,9 @@ export namespace Prisma {
   export type FileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     originalName?: boolean
-    storagePath?: boolean
+    url?: boolean
+    cloudinaryPublicId?: boolean
+    resourceType?: boolean
     isFolder?: boolean
     size?: boolean
     mimeType?: boolean
@@ -2449,7 +2465,9 @@ export namespace Prisma {
   export type FileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     originalName?: boolean
-    storagePath?: boolean
+    url?: boolean
+    cloudinaryPublicId?: boolean
+    resourceType?: boolean
     isFolder?: boolean
     size?: boolean
     mimeType?: boolean
@@ -2464,7 +2482,9 @@ export namespace Prisma {
   export type FileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     originalName?: boolean
-    storagePath?: boolean
+    url?: boolean
+    cloudinaryPublicId?: boolean
+    resourceType?: boolean
     isFolder?: boolean
     size?: boolean
     mimeType?: boolean
@@ -2479,7 +2499,9 @@ export namespace Prisma {
   export type FileSelectScalar = {
     id?: boolean
     originalName?: boolean
-    storagePath?: boolean
+    url?: boolean
+    cloudinaryPublicId?: boolean
+    resourceType?: boolean
     isFolder?: boolean
     size?: boolean
     mimeType?: boolean
@@ -2489,7 +2511,7 @@ export namespace Prisma {
     parentId?: boolean
   }
 
-  export type FileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "originalName" | "storagePath" | "isFolder" | "size" | "mimeType" | "createdAt" | "updatedAt" | "userId" | "parentId", ExtArgs["result"]["file"]>
+  export type FileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "originalName" | "url" | "cloudinaryPublicId" | "resourceType" | "isFolder" | "size" | "mimeType" | "createdAt" | "updatedAt" | "userId" | "parentId", ExtArgs["result"]["file"]>
   export type FileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     parent?: boolean | File$parentArgs<ExtArgs>
@@ -2515,7 +2537,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       originalName: string
-      storagePath: string | null
+      url: string | null
+      cloudinaryPublicId: string | null
+      resourceType: string | null
       isFolder: boolean
       size: bigint | null
       mimeType: string | null
@@ -2951,7 +2975,9 @@ export namespace Prisma {
   interface FileFieldRefs {
     readonly id: FieldRef<"File", 'Int'>
     readonly originalName: FieldRef<"File", 'String'>
-    readonly storagePath: FieldRef<"File", 'String'>
+    readonly url: FieldRef<"File", 'String'>
+    readonly cloudinaryPublicId: FieldRef<"File", 'String'>
+    readonly resourceType: FieldRef<"File", 'String'>
     readonly isFolder: FieldRef<"File", 'Boolean'>
     readonly size: FieldRef<"File", 'BigInt'>
     readonly mimeType: FieldRef<"File", 'String'>
@@ -4424,7 +4450,9 @@ export namespace Prisma {
   export const FileScalarFieldEnum: {
     id: 'id',
     originalName: 'originalName',
-    storagePath: 'storagePath',
+    url: 'url',
+    cloudinaryPublicId: 'cloudinaryPublicId',
+    resourceType: 'resourceType',
     isFolder: 'isFolder',
     size: 'size',
     mimeType: 'mimeType',
@@ -4609,7 +4637,9 @@ export namespace Prisma {
     NOT?: FileWhereInput | FileWhereInput[]
     id?: IntFilter<"File"> | number
     originalName?: StringFilter<"File"> | string
-    storagePath?: StringNullableFilter<"File"> | string | null
+    url?: StringNullableFilter<"File"> | string | null
+    cloudinaryPublicId?: StringNullableFilter<"File"> | string | null
+    resourceType?: StringNullableFilter<"File"> | string | null
     isFolder?: BoolFilter<"File"> | boolean
     size?: BigIntNullableFilter<"File"> | bigint | number | null
     mimeType?: StringNullableFilter<"File"> | string | null
@@ -4625,7 +4655,9 @@ export namespace Prisma {
   export type FileOrderByWithRelationInput = {
     id?: SortOrder
     originalName?: SortOrder
-    storagePath?: SortOrderInput | SortOrder
+    url?: SortOrderInput | SortOrder
+    cloudinaryPublicId?: SortOrderInput | SortOrder
+    resourceType?: SortOrderInput | SortOrder
     isFolder?: SortOrder
     size?: SortOrderInput | SortOrder
     mimeType?: SortOrderInput | SortOrder
@@ -4645,7 +4677,9 @@ export namespace Prisma {
     OR?: FileWhereInput[]
     NOT?: FileWhereInput | FileWhereInput[]
     originalName?: StringFilter<"File"> | string
-    storagePath?: StringNullableFilter<"File"> | string | null
+    url?: StringNullableFilter<"File"> | string | null
+    cloudinaryPublicId?: StringNullableFilter<"File"> | string | null
+    resourceType?: StringNullableFilter<"File"> | string | null
     isFolder?: BoolFilter<"File"> | boolean
     size?: BigIntNullableFilter<"File"> | bigint | number | null
     mimeType?: StringNullableFilter<"File"> | string | null
@@ -4661,7 +4695,9 @@ export namespace Prisma {
   export type FileOrderByWithAggregationInput = {
     id?: SortOrder
     originalName?: SortOrder
-    storagePath?: SortOrderInput | SortOrder
+    url?: SortOrderInput | SortOrder
+    cloudinaryPublicId?: SortOrderInput | SortOrder
+    resourceType?: SortOrderInput | SortOrder
     isFolder?: SortOrder
     size?: SortOrderInput | SortOrder
     mimeType?: SortOrderInput | SortOrder
@@ -4682,7 +4718,9 @@ export namespace Prisma {
     NOT?: FileScalarWhereWithAggregatesInput | FileScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"File"> | number
     originalName?: StringWithAggregatesFilter<"File"> | string
-    storagePath?: StringNullableWithAggregatesFilter<"File"> | string | null
+    url?: StringNullableWithAggregatesFilter<"File"> | string | null
+    cloudinaryPublicId?: StringNullableWithAggregatesFilter<"File"> | string | null
+    resourceType?: StringNullableWithAggregatesFilter<"File"> | string | null
     isFolder?: BoolWithAggregatesFilter<"File"> | boolean
     size?: BigIntNullableWithAggregatesFilter<"File"> | bigint | number | null
     mimeType?: StringNullableWithAggregatesFilter<"File"> | string | null
@@ -4784,7 +4822,9 @@ export namespace Prisma {
 
   export type FileCreateInput = {
     originalName: string
-    storagePath?: string | null
+    url?: string | null
+    cloudinaryPublicId?: string | null
+    resourceType?: string | null
     isFolder?: boolean
     size?: bigint | number | null
     mimeType?: string | null
@@ -4798,7 +4838,9 @@ export namespace Prisma {
   export type FileUncheckedCreateInput = {
     id?: number
     originalName: string
-    storagePath?: string | null
+    url?: string | null
+    cloudinaryPublicId?: string | null
+    resourceType?: string | null
     isFolder?: boolean
     size?: bigint | number | null
     mimeType?: string | null
@@ -4811,7 +4853,9 @@ export namespace Prisma {
 
   export type FileUpdateInput = {
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    cloudinaryPublicId?: NullableStringFieldUpdateOperationsInput | string | null
+    resourceType?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
     size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     mimeType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -4825,7 +4869,9 @@ export namespace Prisma {
   export type FileUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    cloudinaryPublicId?: NullableStringFieldUpdateOperationsInput | string | null
+    resourceType?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
     size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     mimeType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -4839,7 +4885,9 @@ export namespace Prisma {
   export type FileCreateManyInput = {
     id?: number
     originalName: string
-    storagePath?: string | null
+    url?: string | null
+    cloudinaryPublicId?: string | null
+    resourceType?: string | null
     isFolder?: boolean
     size?: bigint | number | null
     mimeType?: string | null
@@ -4851,7 +4899,9 @@ export namespace Prisma {
 
   export type FileUpdateManyMutationInput = {
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    cloudinaryPublicId?: NullableStringFieldUpdateOperationsInput | string | null
+    resourceType?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
     size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     mimeType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -4862,7 +4912,9 @@ export namespace Prisma {
   export type FileUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    cloudinaryPublicId?: NullableStringFieldUpdateOperationsInput | string | null
+    resourceType?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
     size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     mimeType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5094,7 +5146,9 @@ export namespace Prisma {
   export type FileCountOrderByAggregateInput = {
     id?: SortOrder
     originalName?: SortOrder
-    storagePath?: SortOrder
+    url?: SortOrder
+    cloudinaryPublicId?: SortOrder
+    resourceType?: SortOrder
     isFolder?: SortOrder
     size?: SortOrder
     mimeType?: SortOrder
@@ -5114,7 +5168,9 @@ export namespace Prisma {
   export type FileMaxOrderByAggregateInput = {
     id?: SortOrder
     originalName?: SortOrder
-    storagePath?: SortOrder
+    url?: SortOrder
+    cloudinaryPublicId?: SortOrder
+    resourceType?: SortOrder
     isFolder?: SortOrder
     size?: SortOrder
     mimeType?: SortOrder
@@ -5127,7 +5183,9 @@ export namespace Prisma {
   export type FileMinOrderByAggregateInput = {
     id?: SortOrder
     originalName?: SortOrder
-    storagePath?: SortOrder
+    url?: SortOrder
+    cloudinaryPublicId?: SortOrder
+    resourceType?: SortOrder
     isFolder?: SortOrder
     size?: SortOrder
     mimeType?: SortOrder
@@ -5596,7 +5654,9 @@ export namespace Prisma {
 
   export type FileCreateWithoutUserInput = {
     originalName: string
-    storagePath?: string | null
+    url?: string | null
+    cloudinaryPublicId?: string | null
+    resourceType?: string | null
     isFolder?: boolean
     size?: bigint | number | null
     mimeType?: string | null
@@ -5609,7 +5669,9 @@ export namespace Prisma {
   export type FileUncheckedCreateWithoutUserInput = {
     id?: number
     originalName: string
-    storagePath?: string | null
+    url?: string | null
+    cloudinaryPublicId?: string | null
+    resourceType?: string | null
     isFolder?: boolean
     size?: bigint | number | null
     mimeType?: string | null
@@ -5651,7 +5713,9 @@ export namespace Prisma {
     NOT?: FileScalarWhereInput | FileScalarWhereInput[]
     id?: IntFilter<"File"> | number
     originalName?: StringFilter<"File"> | string
-    storagePath?: StringNullableFilter<"File"> | string | null
+    url?: StringNullableFilter<"File"> | string | null
+    cloudinaryPublicId?: StringNullableFilter<"File"> | string | null
+    resourceType?: StringNullableFilter<"File"> | string | null
     isFolder?: BoolFilter<"File"> | boolean
     size?: BigIntNullableFilter<"File"> | bigint | number | null
     mimeType?: StringNullableFilter<"File"> | string | null
@@ -5679,7 +5743,9 @@ export namespace Prisma {
 
   export type FileCreateWithoutChildrenInput = {
     originalName: string
-    storagePath?: string | null
+    url?: string | null
+    cloudinaryPublicId?: string | null
+    resourceType?: string | null
     isFolder?: boolean
     size?: bigint | number | null
     mimeType?: string | null
@@ -5692,7 +5758,9 @@ export namespace Prisma {
   export type FileUncheckedCreateWithoutChildrenInput = {
     id?: number
     originalName: string
-    storagePath?: string | null
+    url?: string | null
+    cloudinaryPublicId?: string | null
+    resourceType?: string | null
     isFolder?: boolean
     size?: bigint | number | null
     mimeType?: string | null
@@ -5709,7 +5777,9 @@ export namespace Prisma {
 
   export type FileCreateWithoutParentInput = {
     originalName: string
-    storagePath?: string | null
+    url?: string | null
+    cloudinaryPublicId?: string | null
+    resourceType?: string | null
     isFolder?: boolean
     size?: bigint | number | null
     mimeType?: string | null
@@ -5722,7 +5792,9 @@ export namespace Prisma {
   export type FileUncheckedCreateWithoutParentInput = {
     id?: number
     originalName: string
-    storagePath?: string | null
+    url?: string | null
+    cloudinaryPublicId?: string | null
+    resourceType?: string | null
     isFolder?: boolean
     size?: bigint | number | null
     mimeType?: string | null
@@ -5777,7 +5849,9 @@ export namespace Prisma {
 
   export type FileUpdateWithoutChildrenInput = {
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    cloudinaryPublicId?: NullableStringFieldUpdateOperationsInput | string | null
+    resourceType?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
     size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     mimeType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5790,7 +5864,9 @@ export namespace Prisma {
   export type FileUncheckedUpdateWithoutChildrenInput = {
     id?: IntFieldUpdateOperationsInput | number
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    cloudinaryPublicId?: NullableStringFieldUpdateOperationsInput | string | null
+    resourceType?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
     size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     mimeType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5819,7 +5895,9 @@ export namespace Prisma {
   export type FileCreateManyUserInput = {
     id?: number
     originalName: string
-    storagePath?: string | null
+    url?: string | null
+    cloudinaryPublicId?: string | null
+    resourceType?: string | null
     isFolder?: boolean
     size?: bigint | number | null
     mimeType?: string | null
@@ -5830,7 +5908,9 @@ export namespace Prisma {
 
   export type FileUpdateWithoutUserInput = {
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    cloudinaryPublicId?: NullableStringFieldUpdateOperationsInput | string | null
+    resourceType?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
     size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     mimeType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5843,7 +5923,9 @@ export namespace Prisma {
   export type FileUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    cloudinaryPublicId?: NullableStringFieldUpdateOperationsInput | string | null
+    resourceType?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
     size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     mimeType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5856,7 +5938,9 @@ export namespace Prisma {
   export type FileUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    cloudinaryPublicId?: NullableStringFieldUpdateOperationsInput | string | null
+    resourceType?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
     size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     mimeType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5868,7 +5952,9 @@ export namespace Prisma {
   export type FileCreateManyParentInput = {
     id?: number
     originalName: string
-    storagePath?: string | null
+    url?: string | null
+    cloudinaryPublicId?: string | null
+    resourceType?: string | null
     isFolder?: boolean
     size?: bigint | number | null
     mimeType?: string | null
@@ -5879,7 +5965,9 @@ export namespace Prisma {
 
   export type FileUpdateWithoutParentInput = {
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    cloudinaryPublicId?: NullableStringFieldUpdateOperationsInput | string | null
+    resourceType?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
     size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     mimeType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5892,7 +5980,9 @@ export namespace Prisma {
   export type FileUncheckedUpdateWithoutParentInput = {
     id?: IntFieldUpdateOperationsInput | number
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    cloudinaryPublicId?: NullableStringFieldUpdateOperationsInput | string | null
+    resourceType?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
     size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     mimeType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5905,7 +5995,9 @@ export namespace Prisma {
   export type FileUncheckedUpdateManyWithoutParentInput = {
     id?: IntFieldUpdateOperationsInput | number
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    cloudinaryPublicId?: NullableStringFieldUpdateOperationsInput | string | null
+    resourceType?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
     size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     mimeType?: NullableStringFieldUpdateOperationsInput | string | null

@@ -126,7 +126,9 @@ exports.Prisma.UserScalarFieldEnum = {
 exports.Prisma.FileScalarFieldEnum = {
   id: 'id',
   originalName: 'originalName',
-  storagePath: 'storagePath',
+  url: 'url',
+  cloudinaryPublicId: 'cloudinaryPublicId',
+  resourceType: 'resourceType',
   isFolder: 'isFolder',
   size: 'size',
   mimeType: 'mimeType',

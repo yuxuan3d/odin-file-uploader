@@ -6,10 +6,20 @@ const path = require("node:path");
 const index = require("./routes/index")
 const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
 const { PrismaClient } = require('./generated/prisma')
+const cloudinary = require('cloudinary').v2;
 
 require('./db/passport');
 
 require('dotenv').config();
+
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true // Optional: ensures HTTPS URLs are generated
+});
+console.log("Cloudinary configured with cloud name:", process.env.CLOUDINARY_CLOUD_NAME);
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
