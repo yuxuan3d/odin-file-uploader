@@ -1136,21 +1136,18 @@ export namespace Prisma {
     id: number | null
     username: string | null
     password: string | null
-    salt: string | null
   }
 
   export type UserMaxAggregateOutputType = {
     id: number | null
     username: string | null
     password: string | null
-    salt: string | null
   }
 
   export type UserCountAggregateOutputType = {
     id: number
     username: number
     password: number
-    salt: number
     _all: number
   }
 
@@ -1167,21 +1164,18 @@ export namespace Prisma {
     id?: true
     username?: true
     password?: true
-    salt?: true
   }
 
   export type UserMaxAggregateInputType = {
     id?: true
     username?: true
     password?: true
-    salt?: true
   }
 
   export type UserCountAggregateInputType = {
     id?: true
     username?: true
     password?: true
-    salt?: true
     _all?: true
   }
 
@@ -1273,9 +1267,8 @@ export namespace Prisma {
 
   export type UserGroupByOutputType = {
     id: number
-    username: string | null
-    password: string | null
-    salt: string | null
+    username: string
+    password: string
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1301,7 +1294,6 @@ export namespace Prisma {
     id?: boolean
     username?: boolean
     password?: boolean
-    salt?: boolean
     files?: boolean | User$filesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -1310,24 +1302,21 @@ export namespace Prisma {
     id?: boolean
     username?: boolean
     password?: boolean
-    salt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     username?: boolean
     password?: boolean
-    salt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
     id?: boolean
     username?: boolean
     password?: boolean
-    salt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "password" | "salt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "password", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     files?: boolean | User$filesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1342,9 +1331,8 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      username: string | null
-      password: string | null
-      salt: string | null
+      username: string
+      password: string
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1772,7 +1760,6 @@ export namespace Prisma {
     readonly id: FieldRef<"User", 'Int'>
     readonly username: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
-    readonly salt: FieldRef<"User", 'String'>
   }
     
 
@@ -1991,7 +1978,7 @@ export namespace Prisma {
     /**
      * The data needed to create a User.
      */
-    data?: XOR<UserCreateInput, UserUncheckedCreateInput>
+    data: XOR<UserCreateInput, UserUncheckedCreateInput>
   }
 
   /**
@@ -2413,14 +2400,14 @@ export namespace Prisma {
   export type FileGroupByOutputType = {
     id: number
     originalName: string
-    storagePath: string
+    storagePath: string | null
     isFolder: boolean
-    size: bigint
-    mimeType: string
+    size: bigint | null
+    mimeType: string | null
     createdAt: Date
     updatedAt: Date
     userId: number
-    parentId: number
+    parentId: number | null
     _count: FileCountAggregateOutputType | null
     _avg: FileAvgAggregateOutputType | null
     _sum: FileSumAggregateOutputType | null
@@ -2528,14 +2515,14 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       originalName: string
-      storagePath: string
+      storagePath: string | null
       isFolder: boolean
-      size: bigint
-      mimeType: string
+      size: bigint | null
+      mimeType: string | null
       createdAt: Date
       updatedAt: Date
       userId: number
-      parentId: number
+      parentId: number | null
     }, ExtArgs["result"]["file"]>
     composites: {}
   }
@@ -4428,8 +4415,7 @@ export namespace Prisma {
   export const UserScalarFieldEnum: {
     id: 'id',
     username: 'username',
-    password: 'password',
-    salt: 'salt'
+    password: 'password'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -4575,17 +4561,15 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     id?: IntFilter<"User"> | number
-    username?: StringNullableFilter<"User"> | string | null
-    password?: StringNullableFilter<"User"> | string | null
-    salt?: StringNullableFilter<"User"> | string | null
+    username?: StringFilter<"User"> | string
+    password?: StringFilter<"User"> | string
     files?: FileListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
-    username?: SortOrderInput | SortOrder
-    password?: SortOrderInput | SortOrder
-    salt?: SortOrderInput | SortOrder
+    username?: SortOrder
+    password?: SortOrder
     files?: FileOrderByRelationAggregateInput
   }
 
@@ -4595,16 +4579,14 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    password?: StringNullableFilter<"User"> | string | null
-    salt?: StringNullableFilter<"User"> | string | null
+    password?: StringFilter<"User"> | string
     files?: FileListRelationFilter
   }, "id" | "username">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
-    username?: SortOrderInput | SortOrder
-    password?: SortOrderInput | SortOrder
-    salt?: SortOrderInput | SortOrder
+    username?: SortOrder
+    password?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -4617,9 +4599,8 @@ export namespace Prisma {
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"User"> | number
-    username?: StringNullableWithAggregatesFilter<"User"> | string | null
-    password?: StringNullableWithAggregatesFilter<"User"> | string | null
-    salt?: StringNullableWithAggregatesFilter<"User"> | string | null
+    username?: StringWithAggregatesFilter<"User"> | string
+    password?: StringWithAggregatesFilter<"User"> | string
   }
 
   export type FileWhereInput = {
@@ -4628,14 +4609,14 @@ export namespace Prisma {
     NOT?: FileWhereInput | FileWhereInput[]
     id?: IntFilter<"File"> | number
     originalName?: StringFilter<"File"> | string
-    storagePath?: StringFilter<"File"> | string
+    storagePath?: StringNullableFilter<"File"> | string | null
     isFolder?: BoolFilter<"File"> | boolean
-    size?: BigIntFilter<"File"> | bigint | number
-    mimeType?: StringFilter<"File"> | string
+    size?: BigIntNullableFilter<"File"> | bigint | number | null
+    mimeType?: StringNullableFilter<"File"> | string | null
     createdAt?: DateTimeFilter<"File"> | Date | string
     updatedAt?: DateTimeFilter<"File"> | Date | string
     userId?: IntFilter<"File"> | number
-    parentId?: IntFilter<"File"> | number
+    parentId?: IntNullableFilter<"File"> | number | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     parent?: XOR<FileNullableScalarRelationFilter, FileWhereInput> | null
     children?: FileListRelationFilter
@@ -4644,14 +4625,14 @@ export namespace Prisma {
   export type FileOrderByWithRelationInput = {
     id?: SortOrder
     originalName?: SortOrder
-    storagePath?: SortOrder
+    storagePath?: SortOrderInput | SortOrder
     isFolder?: SortOrder
-    size?: SortOrder
-    mimeType?: SortOrder
+    size?: SortOrderInput | SortOrder
+    mimeType?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
-    parentId?: SortOrder
+    parentId?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
     parent?: FileOrderByWithRelationInput
     children?: FileOrderByRelationAggregateInput
@@ -4664,14 +4645,14 @@ export namespace Prisma {
     OR?: FileWhereInput[]
     NOT?: FileWhereInput | FileWhereInput[]
     originalName?: StringFilter<"File"> | string
-    storagePath?: StringFilter<"File"> | string
+    storagePath?: StringNullableFilter<"File"> | string | null
     isFolder?: BoolFilter<"File"> | boolean
-    size?: BigIntFilter<"File"> | bigint | number
-    mimeType?: StringFilter<"File"> | string
+    size?: BigIntNullableFilter<"File"> | bigint | number | null
+    mimeType?: StringNullableFilter<"File"> | string | null
     createdAt?: DateTimeFilter<"File"> | Date | string
     updatedAt?: DateTimeFilter<"File"> | Date | string
     userId?: IntFilter<"File"> | number
-    parentId?: IntFilter<"File"> | number
+    parentId?: IntNullableFilter<"File"> | number | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     parent?: XOR<FileNullableScalarRelationFilter, FileWhereInput> | null
     children?: FileListRelationFilter
@@ -4680,14 +4661,14 @@ export namespace Prisma {
   export type FileOrderByWithAggregationInput = {
     id?: SortOrder
     originalName?: SortOrder
-    storagePath?: SortOrder
+    storagePath?: SortOrderInput | SortOrder
     isFolder?: SortOrder
-    size?: SortOrder
-    mimeType?: SortOrder
+    size?: SortOrderInput | SortOrder
+    mimeType?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
-    parentId?: SortOrder
+    parentId?: SortOrderInput | SortOrder
     _count?: FileCountOrderByAggregateInput
     _avg?: FileAvgOrderByAggregateInput
     _max?: FileMaxOrderByAggregateInput
@@ -4701,14 +4682,14 @@ export namespace Prisma {
     NOT?: FileScalarWhereWithAggregatesInput | FileScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"File"> | number
     originalName?: StringWithAggregatesFilter<"File"> | string
-    storagePath?: StringWithAggregatesFilter<"File"> | string
+    storagePath?: StringNullableWithAggregatesFilter<"File"> | string | null
     isFolder?: BoolWithAggregatesFilter<"File"> | boolean
-    size?: BigIntWithAggregatesFilter<"File"> | bigint | number
-    mimeType?: StringWithAggregatesFilter<"File"> | string
+    size?: BigIntNullableWithAggregatesFilter<"File"> | bigint | number | null
+    mimeType?: StringNullableWithAggregatesFilter<"File"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"File"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"File"> | Date | string
     userId?: IntWithAggregatesFilter<"File"> | number
-    parentId?: IntWithAggregatesFilter<"File"> | number
+    parentId?: IntNullableWithAggregatesFilter<"File"> | number | null
   }
 
   export type SessionWhereInput = {
@@ -4759,61 +4740,54 @@ export namespace Prisma {
   }
 
   export type UserCreateInput = {
-    username?: string | null
-    password?: string | null
-    salt?: string | null
+    username: string
+    password: string
     files?: FileCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
     id?: number
-    username?: string | null
-    password?: string | null
-    salt?: string | null
+    username: string
+    password: string
     files?: FileUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
-    username?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    salt?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     files?: FileUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    username?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    salt?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     files?: FileUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
     id?: number
-    username?: string | null
-    password?: string | null
-    salt?: string | null
+    username: string
+    password: string
   }
 
   export type UserUpdateManyMutationInput = {
-    username?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    salt?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    username?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    salt?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
   }
 
   export type FileCreateInput = {
     originalName: string
-    storagePath: string
+    storagePath?: string | null
     isFolder?: boolean
-    size: bigint | number
-    mimeType: string
+    size?: bigint | number | null
+    mimeType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutFilesInput
@@ -4824,23 +4798,23 @@ export namespace Prisma {
   export type FileUncheckedCreateInput = {
     id?: number
     originalName: string
-    storagePath: string
+    storagePath?: string | null
     isFolder?: boolean
-    size: bigint | number
-    mimeType: string
+    size?: bigint | number | null
+    mimeType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
-    parentId: number
+    parentId?: number | null
     children?: FileUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type FileUpdateInput = {
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: StringFieldUpdateOperationsInput | string
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
-    size?: BigIntFieldUpdateOperationsInput | bigint | number
-    mimeType?: StringFieldUpdateOperationsInput | string
+    size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutFilesNestedInput
@@ -4851,36 +4825,36 @@ export namespace Prisma {
   export type FileUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: StringFieldUpdateOperationsInput | string
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
-    size?: BigIntFieldUpdateOperationsInput | bigint | number
-    mimeType?: StringFieldUpdateOperationsInput | string
+    size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
-    parentId?: IntFieldUpdateOperationsInput | number
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
     children?: FileUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type FileCreateManyInput = {
     id?: number
     originalName: string
-    storagePath: string
+    storagePath?: string | null
     isFolder?: boolean
-    size: bigint | number
-    mimeType: string
+    size?: bigint | number | null
+    mimeType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
-    parentId: number
+    parentId?: number | null
   }
 
   export type FileUpdateManyMutationInput = {
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: StringFieldUpdateOperationsInput | string
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
-    size?: BigIntFieldUpdateOperationsInput | bigint | number
-    mimeType?: StringFieldUpdateOperationsInput | string
+    size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4888,14 +4862,14 @@ export namespace Prisma {
   export type FileUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: StringFieldUpdateOperationsInput | string
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
-    size?: BigIntFieldUpdateOperationsInput | bigint | number
-    mimeType?: StringFieldUpdateOperationsInput | string
+    size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
-    parentId?: IntFieldUpdateOperationsInput | number
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type SessionCreateInput = {
@@ -4958,10 +4932,10 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+  export type StringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -4970,18 +4944,13 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+    not?: NestedStringFilter<$PrismaModel> | string
   }
 
   export type FileListRelationFilter = {
     every?: FileWhereInput
     some?: FileWhereInput
     none?: FileWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type FileOrderByRelationAggregateInput = {
@@ -4992,7 +4961,6 @@ export namespace Prisma {
     id?: SortOrder
     username?: SortOrder
     password?: SortOrder
-    salt?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -5003,14 +4971,12 @@ export namespace Prisma {
     id?: SortOrder
     username?: SortOrder
     password?: SortOrder
-    salt?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
     username?: SortOrder
     password?: SortOrder
-    salt?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -5033,25 +4999,7 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type StringFilter<$PrismaModel = never> = {
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
     notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -5063,7 +5011,25 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
-    not?: NestedStringFilter<$PrismaModel> | string
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -5071,15 +5037,15 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type BigIntFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+  export type BigIntNullableFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
     lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
+    not?: NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -5093,6 +5059,17 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -5101,6 +5078,11 @@ export namespace Prisma {
   export type FileNullableScalarRelationFilter = {
     is?: FileWhereInput | null
     isNot?: FileWhereInput | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type FileUserIdParentIdOriginalNameCompoundUniqueInput = {
@@ -5162,10 +5144,10 @@ export namespace Prisma {
     parentId?: SortOrder
   }
 
-  export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -5174,10 +5156,10 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -5188,20 +5170,20 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+  export type BigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
     lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedBigIntFilter<$PrismaModel>
-    _min?: NestedBigIntFilter<$PrismaModel>
-    _max?: NestedBigIntFilter<$PrismaModel>
+    not?: NestedBigIntNullableWithAggregatesFilter<$PrismaModel> | bigint | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedBigIntNullableFilter<$PrismaModel>
+    _min?: NestedBigIntNullableFilter<$PrismaModel>
+    _max?: NestedBigIntNullableFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -5216,6 +5198,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type SessionCountOrderByAggregateInput = {
@@ -5253,8 +5251,8 @@ export namespace Prisma {
     connect?: FileWhereUniqueInput | FileWhereUniqueInput[]
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
   }
 
   export type FileUpdateManyWithoutUserNestedInput = {
@@ -5319,16 +5317,16 @@ export namespace Prisma {
     connect?: FileWhereUniqueInput | FileWhereUniqueInput[]
   }
 
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
   }
 
-  export type BigIntFieldUpdateOperationsInput = {
-    set?: bigint | number
+  export type NullableBigIntFieldUpdateOperationsInput = {
+    set?: bigint | number | null
     increment?: bigint | number
     decrement?: bigint | number
     multiply?: bigint | number
@@ -5371,6 +5369,14 @@ export namespace Prisma {
     deleteMany?: FileScalarWhereInput | FileScalarWhereInput[]
   }
 
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type FileUncheckedUpdateManyWithoutParentNestedInput = {
     create?: XOR<FileCreateWithoutParentInput, FileUncheckedCreateWithoutParentInput> | FileCreateWithoutParentInput[] | FileUncheckedCreateWithoutParentInput[]
     connectOrCreate?: FileCreateOrConnectWithoutParentInput | FileCreateOrConnectWithoutParentInput[]
@@ -5396,10 +5402,10 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+  export type NestedStringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -5407,7 +5413,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+    not?: NestedStringFilter<$PrismaModel> | string
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -5437,75 +5443,6 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedStringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringFilter<$PrismaModel> | string
-  }
-
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedBigIntFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
-  }
-
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -5523,6 +5460,75 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBigIntNullableFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
@@ -5531,20 +5537,31 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type NestedBigIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+  export type NestedBigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
     lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedBigIntFilter<$PrismaModel>
-    _min?: NestedBigIntFilter<$PrismaModel>
-    _max?: NestedBigIntFilter<$PrismaModel>
+    not?: NestedBigIntNullableWithAggregatesFilter<$PrismaModel> | bigint | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedBigIntNullableFilter<$PrismaModel>
+    _min?: NestedBigIntNullableFilter<$PrismaModel>
+    _max?: NestedBigIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -5561,12 +5578,28 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
   export type FileCreateWithoutUserInput = {
     originalName: string
-    storagePath: string
+    storagePath?: string | null
     isFolder?: boolean
-    size: bigint | number
-    mimeType: string
+    size?: bigint | number | null
+    mimeType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     parent?: FileCreateNestedOneWithoutChildrenInput
@@ -5576,13 +5609,13 @@ export namespace Prisma {
   export type FileUncheckedCreateWithoutUserInput = {
     id?: number
     originalName: string
-    storagePath: string
+    storagePath?: string | null
     isFolder?: boolean
-    size: bigint | number
-    mimeType: string
+    size?: bigint | number | null
+    mimeType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    parentId: number
+    parentId?: number | null
     children?: FileUncheckedCreateNestedManyWithoutParentInput
   }
 
@@ -5618,27 +5651,25 @@ export namespace Prisma {
     NOT?: FileScalarWhereInput | FileScalarWhereInput[]
     id?: IntFilter<"File"> | number
     originalName?: StringFilter<"File"> | string
-    storagePath?: StringFilter<"File"> | string
+    storagePath?: StringNullableFilter<"File"> | string | null
     isFolder?: BoolFilter<"File"> | boolean
-    size?: BigIntFilter<"File"> | bigint | number
-    mimeType?: StringFilter<"File"> | string
+    size?: BigIntNullableFilter<"File"> | bigint | number | null
+    mimeType?: StringNullableFilter<"File"> | string | null
     createdAt?: DateTimeFilter<"File"> | Date | string
     updatedAt?: DateTimeFilter<"File"> | Date | string
     userId?: IntFilter<"File"> | number
-    parentId?: IntFilter<"File"> | number
+    parentId?: IntNullableFilter<"File"> | number | null
   }
 
   export type UserCreateWithoutFilesInput = {
-    username?: string | null
-    password?: string | null
-    salt?: string | null
+    username: string
+    password: string
   }
 
   export type UserUncheckedCreateWithoutFilesInput = {
     id?: number
-    username?: string | null
-    password?: string | null
-    salt?: string | null
+    username: string
+    password: string
   }
 
   export type UserCreateOrConnectWithoutFilesInput = {
@@ -5648,10 +5679,10 @@ export namespace Prisma {
 
   export type FileCreateWithoutChildrenInput = {
     originalName: string
-    storagePath: string
+    storagePath?: string | null
     isFolder?: boolean
-    size: bigint | number
-    mimeType: string
+    size?: bigint | number | null
+    mimeType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutFilesInput
@@ -5661,14 +5692,14 @@ export namespace Prisma {
   export type FileUncheckedCreateWithoutChildrenInput = {
     id?: number
     originalName: string
-    storagePath: string
+    storagePath?: string | null
     isFolder?: boolean
-    size: bigint | number
-    mimeType: string
+    size?: bigint | number | null
+    mimeType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
-    parentId: number
+    parentId?: number | null
   }
 
   export type FileCreateOrConnectWithoutChildrenInput = {
@@ -5678,10 +5709,10 @@ export namespace Prisma {
 
   export type FileCreateWithoutParentInput = {
     originalName: string
-    storagePath: string
+    storagePath?: string | null
     isFolder?: boolean
-    size: bigint | number
-    mimeType: string
+    size?: bigint | number | null
+    mimeType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutFilesInput
@@ -5691,10 +5722,10 @@ export namespace Prisma {
   export type FileUncheckedCreateWithoutParentInput = {
     id?: number
     originalName: string
-    storagePath: string
+    storagePath?: string | null
     isFolder?: boolean
-    size: bigint | number
-    mimeType: string
+    size?: bigint | number | null
+    mimeType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -5723,16 +5754,14 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutFilesInput = {
-    username?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    salt?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserUncheckedUpdateWithoutFilesInput = {
     id?: IntFieldUpdateOperationsInput | number
-    username?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    salt?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
   }
 
   export type FileUpsertWithoutChildrenInput = {
@@ -5748,10 +5777,10 @@ export namespace Prisma {
 
   export type FileUpdateWithoutChildrenInput = {
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: StringFieldUpdateOperationsInput | string
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
-    size?: BigIntFieldUpdateOperationsInput | bigint | number
-    mimeType?: StringFieldUpdateOperationsInput | string
+    size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutFilesNestedInput
@@ -5761,14 +5790,14 @@ export namespace Prisma {
   export type FileUncheckedUpdateWithoutChildrenInput = {
     id?: IntFieldUpdateOperationsInput | number
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: StringFieldUpdateOperationsInput | string
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
-    size?: BigIntFieldUpdateOperationsInput | bigint | number
-    mimeType?: StringFieldUpdateOperationsInput | string
+    size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
-    parentId?: IntFieldUpdateOperationsInput | number
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type FileUpsertWithWhereUniqueWithoutParentInput = {
@@ -5790,21 +5819,21 @@ export namespace Prisma {
   export type FileCreateManyUserInput = {
     id?: number
     originalName: string
-    storagePath: string
+    storagePath?: string | null
     isFolder?: boolean
-    size: bigint | number
-    mimeType: string
+    size?: bigint | number | null
+    mimeType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    parentId: number
+    parentId?: number | null
   }
 
   export type FileUpdateWithoutUserInput = {
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: StringFieldUpdateOperationsInput | string
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
-    size?: BigIntFieldUpdateOperationsInput | bigint | number
-    mimeType?: StringFieldUpdateOperationsInput | string
+    size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     parent?: FileUpdateOneWithoutChildrenNestedInput
@@ -5814,35 +5843,35 @@ export namespace Prisma {
   export type FileUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: StringFieldUpdateOperationsInput | string
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
-    size?: BigIntFieldUpdateOperationsInput | bigint | number
-    mimeType?: StringFieldUpdateOperationsInput | string
+    size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    parentId?: IntFieldUpdateOperationsInput | number
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
     children?: FileUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type FileUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: StringFieldUpdateOperationsInput | string
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
-    size?: BigIntFieldUpdateOperationsInput | bigint | number
-    mimeType?: StringFieldUpdateOperationsInput | string
+    size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    parentId?: IntFieldUpdateOperationsInput | number
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type FileCreateManyParentInput = {
     id?: number
     originalName: string
-    storagePath: string
+    storagePath?: string | null
     isFolder?: boolean
-    size: bigint | number
-    mimeType: string
+    size?: bigint | number | null
+    mimeType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -5850,10 +5879,10 @@ export namespace Prisma {
 
   export type FileUpdateWithoutParentInput = {
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: StringFieldUpdateOperationsInput | string
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
-    size?: BigIntFieldUpdateOperationsInput | bigint | number
-    mimeType?: StringFieldUpdateOperationsInput | string
+    size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutFilesNestedInput
@@ -5863,10 +5892,10 @@ export namespace Prisma {
   export type FileUncheckedUpdateWithoutParentInput = {
     id?: IntFieldUpdateOperationsInput | number
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: StringFieldUpdateOperationsInput | string
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
-    size?: BigIntFieldUpdateOperationsInput | bigint | number
-    mimeType?: StringFieldUpdateOperationsInput | string
+    size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -5876,10 +5905,10 @@ export namespace Prisma {
   export type FileUncheckedUpdateManyWithoutParentInput = {
     id?: IntFieldUpdateOperationsInput | number
     originalName?: StringFieldUpdateOperationsInput | string
-    storagePath?: StringFieldUpdateOperationsInput | string
+    storagePath?: NullableStringFieldUpdateOperationsInput | string | null
     isFolder?: BoolFieldUpdateOperationsInput | boolean
-    size?: BigIntFieldUpdateOperationsInput | bigint | number
-    mimeType?: StringFieldUpdateOperationsInput | string
+    size?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    mimeType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number

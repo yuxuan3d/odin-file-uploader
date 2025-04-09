@@ -16,30 +16,33 @@ datasource db {
 
 model User {
   id      Int      @id @default(autoincrement())
-  username    String? @unique
-  password    String?
-  salt        String?
+  username    String @unique
+  password    String
   files       File[]
 }
 
 model File {
   id            Int      @id @default(autoincrement())
   originalName  String
-  storagePath   String
+  storagePath   String?
   isFolder  Boolean  @default(false)
-  size          BigInt
-  mimeType      String
+  size          BigInt?
+  mimeType      String?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
   userId    Int
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade) // Cascade delete: if user is deleted, their files are too.
 
-  parentId  Int  // Foreign key to the parent folder (null for root items)
+  parentId  Int?  // Foreign key to the parent folder (null for root items)
   parent    File?    @relation("FolderHierarchy", fields: [parentId], references: [id], onDelete: Cascade) // Relation to the parent folder. Cascade delete: deleting
   children  File[]   @relation("FolderHierarchy") // Relation to the children of this folder
 
   @@unique([userId, parentId, originalName])
+
+  @@index([userId])
+  @@index([parentId])
+  @@index([userId, parentId])
 }
 
 model Session {

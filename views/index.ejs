@@ -1,10 +1,93 @@
 <html>
+    <head>
+        <title>File Uploader - <%- title %></title>
+        <style> /* Basic styling for clarity */
+            .folder { font-weight: bold; }
+            .item { margin: 5px 0; border: 1px solid #eee; padding: 5px; display: flex; justify-content: space-between; align-items: center; }
+            .item-name { flex-grow: 1; margin-right: 10px; }
+            .item-actions form { display: inline-block; margin-left: 5px;}
+            .breadcrumbs a { margin-right: 5px; }
+        </style>
+    </head>
   <body>
     <h1><%- title %></h1>
     <% if (locals.user) {%>
-        <h1>Welcome <%= user.username %></h1>
-        <a href="/new">Upload a file</a>
-        <a href="/logout">LOG OUT</a>
+        <p>Welcome <%= user.username %> | <a href="/logout">Log Out</a></p>
+
+        <hr>
+
+        <div class="breadcrumbs">
+            <a href="/">My Files</a> <!-- Link to Root -->
+            <% if (locals.currentFolder && currentFolder.parent) { %>
+                <span>> ... ></span> <!-- Indicate potential middle folders -->
+                <a href="/folder/<%= currentFolder.parentId %>"><%= currentFolder.parent.originalName %></a>
+            <% } %>
+            <% if (locals.currentFolder) { %>
+                <span>> <%= currentFolder.originalName %></span>
+            <% } %>
+            <!-- "Up" Link if not in root -->
+            <% if (locals.currentFolder) { %>
+                <span style="margin-left: 20px;">
+                    <a href="<%= currentFolder.parentId ? '/folder/' + currentFolder.parentId : '/' %>">⬆️ Up</a>
+                </span>
+            <% } %>
+        </div>
+
+        <hr>
+
+        <div>
+            <form action="/folder/create" method="POST">
+                <input type="text" name="folderName" placeholder="New folder name" required>
+                <input type="hidden" name="parentId" value="<%= locals.currentFolderId || '' %>">
+                <button type="submit">Create Folder</button>
+            </form>
+        </div>
+
+        <div>
+            <form method="POST" action="/upload" enctype="multipart/form-data">
+               <input type="file" name="file" required>
+               <input type="hidden" name="parentId" value="<%= locals.currentFolderId || '' %>">
+               <button type="submit">Upload File</button>
+           </form>
+       </div>
+
+        <hr>
+
+        <h2>Contents:</h2>
+        <% if (items.length === 0) { %>
+            <p>This folder is empty.</p>
+        <% } else { %>
+            <% items.forEach(item => { %>
+                <div class="item">
+                    <span class="item-name <%= item.isFolder ? 'folder' : 'file' %>">
+                        <% if (item.isFolder) { %>
+                            📁 <a href="/folder/<%= item.id %>"><%= item.originalName %></a>
+                        <% } else { %>
+                            📄 <%= item.originalName %>
+                            <small>(<%= (Number(item.size) / 1024).toFixed(2) %> KB)</small>
+                        <% } %>
+                    </span>
+                    <span class="item-actions">
+                        <!-- Download: Link to download or use JS modal -->
+                        <form action="/download/<%= item.id %>" method="POST"></form>
+                            <button type="submit">Download</button>
+                        </form>
+                        
+                        <!-- Rename: Link to form or use JS modal -->
+                        <a href="/rename/<%= item.id %>">Rename</a>
+
+                         <!-- Delete Form -->
+                        <form action="/delete/<%= item.id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete <%= item.originalName %>?');">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </span>
+                </div>
+            <% }) %>
+        <% } %>
+
+        <div>
+            <a href="/logout">LOG OUT</a>
+        </div>
       <% } else { %>
         <h2>Login</h2>
         <form action="/login" method="POST">
