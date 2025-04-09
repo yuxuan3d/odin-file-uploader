@@ -91,7 +91,6 @@ async function createFolderRecord(folderName, userId, parentId) {
             data: {
                 originalName: folderName,
                 isFolder: true,
-                storagePath: null,
                 size: null,
                 mimeType: null,
                 userId: userId,
